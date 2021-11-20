@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "86108357068",
+    "project_id": "faculdadeflutter",
+    "storage_bucket": "faculdadeflutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86108357068:android:c699355b6cbed6a43d5d69",
+        "android_client_info": {
+          "package_name": "com.alguma.coisa.leal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86108357068-02tqk62s6vh08id4leq4jilsvh2nc684.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS6TSitADJx9VUj9Q8FRS6yAdFIJPHqtA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86108357068-02tqk62s6vh08id4leq4jilsvh2nc684.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86108357068:android:990a84cce5bb72923d5d69",
+        "android_client_info": {
+          "package_name": "com.example.trabalho_faculdade_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86108357068-02tqk62s6vh08id4leq4jilsvh2nc684.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS6TSitADJx9VUj9Q8FRS6yAdFIJPHqtA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86108357068-02tqk62s6vh08id4leq4jilsvh2nc684.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
