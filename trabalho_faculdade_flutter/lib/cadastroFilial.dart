@@ -1,21 +1,13 @@
-//import 'dart:ffi';
-//import 'package:http/http.dart' as http;
-
 import 'package:flutter/material.dart';
 
-class CadastroCliente extends StatelessWidget {
+class CadastroFilial extends StatelessWidget {
   // This widget is the root of your application.
-  bool _value1 = false;
-  bool _value2 = false;
-  // void _value1Changed(bool value) => setState(() => _value1 = value);
-  // void _value2Changed(bool value) => setState(() => _value2 = value);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Cadastro de cliente'),
+          title: Text('Cadastro de filial'),
         ),
                   body: 
                   Padding(
@@ -39,7 +31,7 @@ class CadastroCliente extends StatelessWidget {
     ),
     TextField(
       decoration: InputDecoration(
-        label: Text("CPF"),
+        label: Text("CNPJ"),
         //border: OutlineInputBorder()
       ),
     ),
@@ -50,33 +42,6 @@ class CadastroCliente extends StatelessWidget {
         //border: OutlineInputBorder()
       ),
     ),
-            TextField(
-      decoration: InputDecoration(
-
-        label: Text("Acesso"),
-        //border: OutlineInputBorder()
-      ),
-    ),
-            TextField(
-      decoration: InputDecoration(
-
-        label: Text("Senha"),
-        //border: OutlineInputBorder()
-      ),
-    ),
-
-          //     new Checkbox(value: _value1, onChanged: _value1Changed),
-          //     new CheckboxListTile(
-          //         value: _value2,
-          //         onChanged: _value2Changed,
-          //         title: new Text('Hello World'),
-          //         controlAffinity: ListTileControlAffinity.leading,
-          //         subtitle: new Text('Subtitle'),
-          //         secondary: new Icon(Icons.archive),
-          //         activeColor: Colors.red,
-          //     ),
-          //   ],
-          // ),
 
             Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
@@ -93,36 +58,30 @@ class CadastroCliente extends StatelessWidget {
   }
 }
 
-class Cliente {
+class Filial {
   final String nome;
   final String endereco;
-  final String cpf;
+  final String cnpj;
   final String telefone;
 
-  Cliente(
+  Filial(
     this.nome,
     this.endereco,
-    this.cpf,
+    this.cnpj,
     this.telefone,
   );
 
-    @override
-  String toString() {
-    return 'Cliente{nome: $nome, endereco: $endereco, cpf: $cpf, telefone: $telefone}';
-  }  
-  // Map<String, dynamic> toJson()
-  // {
-  //   return {
-  //     "name": this.nome
-  //   };
-  // }
+  //   @override
+  // String toString() {
+  //   return 'Cliente{nome: $nome, endereco: $endereco, cpf: $cpf, telefone: $telefone}';
+  // }  
 }
 
 class MyApp extends StatelessWidget {
 
   final TextEditingController _controladorNome = TextEditingController();
   final TextEditingController _controladorEndereco = TextEditingController();
-  final TextEditingController _controladorCpf = TextEditingController();
+  final TextEditingController _controladorCnpj = TextEditingController();
   final TextEditingController _controladorTelefone = TextEditingController();
 
   @override
@@ -130,24 +89,24 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Cadastro de cliente'),
+          title: Text('Cadastro de filial'),
         ),
         body: Column(
           children: <Widget>[
             TextField( controller: _controladorNome),
             TextField( controller: _controladorEndereco),
-            TextField( controller: _controladorCpf),
+            TextField( controller: _controladorCnpj),
             TextField( controller: _controladorTelefone),
 RaisedButton(
   child: Text('Cadastrar'),
   onPressed:  ()async {
     final String nome = _controladorNome.text;
     final String endereco = _controladorEndereco.text;
-    final String cpf = _controladorCpf.text;
+    final String cnpj = _controladorCnpj.text;
     final String telefone = _controladorTelefone.text;
 
-    final Cliente novoCliente = Cliente(nome, endereco, cpf, telefone);
-    print(novoCliente);
+    final Filial novaFilial = Filial(nome, endereco, cnpj, telefone);
+    print(novaFilial);
     //var response = await http.put("www.google.com.br", body: novoCliente.toJson());
   },
 )
