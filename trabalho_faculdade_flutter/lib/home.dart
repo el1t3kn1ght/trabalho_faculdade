@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'cadastroCliente.dart';
+import 'package:trabalho_faculdade_flutter/screen/cadastroCliente.dart';
 
 class SecondRoute extends StatelessWidget {
   const SecondRoute({Key? key}) : super(key: key);
@@ -46,7 +45,7 @@ class HomeScreen extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(Icons.person),
-              title: Text("Cadastro de cliente"),
+              title: Text("Cadastro de cliente"), 
               onTap: () {
               Navigator.push(
                 context,
