@@ -20,54 +20,66 @@ class _LoginScreeneState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Login"),
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: TextField(
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(hintText: "Email"),
-              onChanged: (value) {
-                setState(() {
-                  _email = value;
-                });
-              },
+      body: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Image.asset('assets/image/transferir.png')),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: TextField(
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.orange, width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.orange, width: 2.0),
+                  ),
+                  hintText: 'Enter your name',
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    _email = value;
+                  });
+                },
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: TextField(
-              obscureText: true,
-              decoration: InputDecoration(hintText: "Senha"),
-              onChanged: (value) {
-                setState(() {
-                  _password = value;
-                });
-              },
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.orange, width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.orange, width: 2.0),
+                  ),
+                  hintText: 'Enter your name',
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    _password = value;
+                  });
+                },
+              ),
             ),
-          ),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            RaisedButton(
-                color: Theme.of(context).accentColor,
-                child: Text('Signin'),
-                onPressed: () {
-                  auth.signInWithEmailAndPassword(
-                      email: _email, password: _password);
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => HomeScreen()));
-                }),
-            RaisedButton(
-                color: Theme.of(context).accentColor,
-                child: Text('Signup'),
-                onPressed: () {
-                  auth.createUserWithEmailAndPassword(
-                      email: _email, password: _password);
-                })
-          ]),
-        ],
+            Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+              RaisedButton(
+                  color: Theme.of(context).accentColor,
+                  child: Text('Entrar'),
+                  onPressed: () {
+                    auth.signInWithEmailAndPassword(
+                        email: _email, password: _password);
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                  })
+            ]),
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:trabalho_faculdade_flutter/screen/cliente/ClienteDTO.dart';
 
 class HomeScreen extends StatelessWidget {
   late FirebaseFirestore db = FirebaseFirestore.instance;
@@ -8,29 +9,37 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          FutureBuilder(
-            future: db.collection('cliente').doc('VJmxTX7i22mJG4m9xoVn').get(),
-            builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-              if (snapshot.hasData) {
-                Map<String, dynamic> data =
-                    snapshot.data!.data() as Map<String, dynamic>;
-                return Text("Full Name: ${data['nome']} ${data['cpf']}");
-              } else {
-                return Text('nao tem dados');
-              }
-            },
-          )
-        ],
+      body: FutureBuilder(
+        future: lerBanco(),
+        builder: (context, AsyncSnapshot<List<Widget>> snapshot) {
+          return ListView(
+            children: snapshot.data!,
+          );
+        },
       ),
     );
   }
 
-  lerBanco() async {
-    final snapShot =
-        await db.collection('cliente').doc('VJmxTX7i22mJG4m9xoVn').get();
+  Future<List<Widget>> lerBanco() async {
+    var collection = await db.collection('cliente').get();
+    List<ClienteDTO> clientes = [];
+    List<Center> response = [];
 
-    return snapShot;
+    var listaDesgracada = collection.docs.toList();
+
+    listaDesgracada.forEach((algumaCoisa) {
+      var ajaja = ClienteDTO(algumaCoisa['nome'], algumaCoisa['cpf']);
+
+      clientes.add(ajaja);
+    });
+
+    clientes.forEach((element) {
+      response.add(Center(
+          child: ListTile(
+        title: Text('${element.nome}'),
+      )));
+    });
+
+    return response;
   }
 }
