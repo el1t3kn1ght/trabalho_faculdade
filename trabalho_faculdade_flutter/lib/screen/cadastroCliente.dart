@@ -2,15 +2,23 @@
 //import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CadastroCliente extends StatelessWidget {
-  // This widget is the root of your application.
-  bool _value1 = false;
-  bool _value2 = false;
-  // void _value1Changed(bool value) => setState(() => _value1 = value);
-  // void _value2Changed(bool value) => setState(() => _value2 = value);
 
   @override
+  Future<void> addUser() {
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    return users
+        .add({
+      'full_name': "Fabim",
+      'company': "Fabim business",
+      'age': "24"
+    })
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
+  }
+
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -64,27 +72,14 @@ class CadastroCliente extends StatelessWidget {
         //border: OutlineInputBorder()
       ),
     ),
-
-          //     new Checkbox(value: _value1, onChanged: _value1Changed),
-          //     new CheckboxListTile(
-          //         value: _value2,
-          //         onChanged: _value2Changed,
-          //         title: new Text('Hello World'),
-          //         controlAffinity: ListTileControlAffinity.leading,
-          //         subtitle: new Text('Subtitle'),
-          //         secondary: new Icon(Icons.archive),
-          //         activeColor: Colors.red,
-          //     ),
-          //   ],
-          // ),
-
             Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextButton(
-            onPressed: () {
-
-            },
-            child: const Text("Cadastrar"),
+              onPressed: addUser,
+              child: Text(
+              "Add User",
+              ),
+            //child: const Text("Cadastrar"),
           ),
             )],
 )),
@@ -153,6 +148,59 @@ RaisedButton(
 )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class Movie {
+  Movie({required this.title, required this.genre});
+
+  Movie.fromJson(Map<String, Object?> json)
+      : this(
+    title: json['title']! as String,
+    genre: json['genre']! as String,
+  );
+
+  final String title;
+  final String genre;
+
+  Map<String, Object?> toJson() {
+    return {
+      'title': title,
+      'genre': genre,
+    };
+  }
+}
+
+class AddUser extends StatelessWidget {
+  final String fullName;
+  final String company;
+  final int age;
+
+  AddUser(this.fullName, this.company, this.age);
+
+  @override
+  Widget build(BuildContext context) {
+    // Create a CollectionReference called users that references the firestore collection
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+    Future<void> addUser() {
+      // Call the user's CollectionReference to add a new user
+      return users
+          .add({
+        'full_name': fullName, // John Doe
+        'company': company, // Stokes and Sons
+        'age': age // 42
+      })
+          .then((value) => print("User Added"))
+          .catchError((error) => print("Failed to add user: $error"));
+    }
+
+    return FlatButton(
+      onPressed: addUser,
+      child: Text(
+        "Add User",
       ),
     );
   }
