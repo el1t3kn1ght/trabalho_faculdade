@@ -1,6 +1,35 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class CadastroFilial extends StatelessWidget {
+class CadastroSeguradoraScreen extends StatefulWidget {
+  @override
+  _CadastroSeguradoraScreen createState() => _CadastroSeguradoraScreen();
+}
+
+class _CadastroSeguradoraScreen extends State<CadastroSeguradoraScreen> {
+  String _nome = "",
+      _endereco = "",
+      _cnpj = "",
+      _telefone = "",
+      _mensalidade = "",
+      _beneficios = "";
+
+  @override
+  Future<void> addSeguradora(String? nome, String? endereco, String? cnpj,
+      String? telefone, String? mensalidade, String? beneficios) {
+    CollectionReference seguradora = FirebaseFirestore.instance.collection('seguradora');
+    return seguradora
+        .add({
+      'nome': "$nome",
+      'endereco': "$endereco",
+      'cnpj': "$cnpj",
+      'telefone': "$telefone",
+      'mensalidade': "$mensalidade",
+      'beneficios': "$beneficios"
+    })
+        .then((value) => print("Seguradora Added"))
+        .catchError((error) => print("Failed to add seguradora: $error"));
+  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -19,49 +48,73 @@ class CadastroFilial extends StatelessWidget {
   children: <Widget>[
     TextField(
       decoration: InputDecoration(
-        label: Text("Nome"),
+        label: Text("Nome")),
+                    onChanged: (value) {
+                      setState(() {
+                        _nome = value;
+                      });
+                    },
         //border: OutlineInputBorder()
       ),
-    ),
      TextField(
       decoration: InputDecoration(
-        label: Text("Endereço"),
+        label: Text("Endereço")),
+       onChanged: (value) {
+         setState(() {
+           _endereco = value;
+         });
+       },
         //border: OutlineInputBorder()
       ),
-    ),
     TextField(
       decoration: InputDecoration(
-        label: Text("CNPJ"),
+        label: Text("CNPJ")),
+      onChanged: (value) {
+        setState(() {
+          _cnpj = value;
+        });
+      },
         //border: OutlineInputBorder()
-      ),
     ),
         TextField(
       decoration: InputDecoration(
 
-        label: Text("Telefone"),
+        label: Text("Telefone")),
         //border: OutlineInputBorder()
-      ),
+        onChanged: (value) {
+          setState(() {
+            _telefone = value;
+          });
+        },
     ),
             TextField(
       decoration: InputDecoration(
 
-        label: Text("Mensalidade"),
+        label: Text("Mensalidade")),
         //border: OutlineInputBorder()
-      ),
+        onChanged: (value) {
+          setState(() {
+            _mensalidade = value;
+          });
+        },
     ),
             TextField(
       decoration: InputDecoration(
 
-        label: Text("Benefícios"),
+        label: Text("Benefícios")),
+              onChanged: (value) {
+                setState(() {
+                  _beneficios = value;
+                });
+              },
         //border: OutlineInputBorder()
       ),
-    ),
-
             Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextButton(
             onPressed: () {
-
+              addSeguradora(
+                  _nome, _endereco, _cnpj, _telefone, _mensalidade, _beneficios);
             },
             child: const Text("Cadastrar"),
           ),

@@ -1,8 +1,32 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class CadastroFilial extends StatelessWidget {
-  // This widget is the root of your application.
+class CadastroFilialScreen extends StatefulWidget {
   @override
+  _CadastroFilialScreen createState() => _CadastroFilialScreen();
+}
+
+class _CadastroFilialScreen extends State<CadastroFilialScreen> {
+  String _nome = "",
+      _endereco = "",
+      _cnpj = "",
+      _telefone = "";
+
+  @override
+  Future<void> addFilial(String? nome, String? endereco, String? cnpj,
+      String? telefone) {
+    CollectionReference filial = FirebaseFirestore.instance.collection('filial');
+    return filial
+        .add({
+      'nome': "$nome",
+      'endereco': "$endereco",
+      'cnpj': "$cnpj",
+      'telefone': "$telefone",
+    })
+        .then((value) => print("Filial Added"))
+        .catchError((error) => print("Failed to add filial: $error"));
+  }
+
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -12,43 +36,59 @@ class CadastroFilial extends StatelessWidget {
                   body: 
                   Padding(
   padding: const EdgeInsets.all(16.0),
-  child: 
+  child:
   Container(
    width: MediaQuery.of(context).size.width, 
   child:Column(
   children: <Widget>[
     TextField(
       decoration: InputDecoration(
-        label: Text("Nome"),
+        label: Text("Nome")),
+    onChanged: (value) {
+      setState(() {
+        _nome = value;
+      });
+    },
         //border: OutlineInputBorder()
       ),
-    ),
      TextField(
       decoration: InputDecoration(
-        label: Text("Endereço"),
+        label: Text("Endereço")),
+    onChanged: (value) {
+      setState(() {
+        _endereco = value;
+      });
+    },
         //border: OutlineInputBorder()
-      ),
     ),
     TextField(
       decoration: InputDecoration(
-        label: Text("CNPJ"),
+        label: Text("CNPJ")),
+      onChanged: (value) {
+        setState(() {
+          _cnpj = value;
+        });
+      },
         //border: OutlineInputBorder()
       ),
-    ),
         TextField(
       decoration: InputDecoration(
 
-        label: Text("Telefone"),
+        label: Text("Telefone")),
         //border: OutlineInputBorder()
+          onChanged: (value) {
+            setState(() {
+              _telefone = value;
+            });
+          },
       ),
-    ),
-
             Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextButton(
             onPressed: () {
-
-            },
+    addFilial(
+    _nome, _endereco, _cnpj, _telefone);
+    },
             child: const Text("Cadastrar"),
           ),
             )],

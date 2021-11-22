@@ -1,7 +1,32 @@
 //import 'dart:ffi';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class CadastroSinistro extends StatelessWidget {
+class CadastroSinistroScreen extends StatefulWidget {
+  @override
+  _CadastroSinistroScreen createState() => _CadastroSinistroScreen();
+}
+
+class _CadastroSinistroScreen extends State<CadastroSinistroScreen> {
+  String _tipoSinistro = "",
+      _tipoVeiculo = "",
+      _localSinistro = "",
+      _dataSinistro = "";
+
+  @override
+  Future<void> addSinistro(String? tipoSinistro, String? tipoVeiculo, String? localSinistro,
+      String? dataSinistro) {
+    CollectionReference sinistro = FirebaseFirestore.instance.collection('sinistro');
+    return sinistro
+        .add({
+    'tipoSinistro': "$tipoSinistro",
+    'tipoVeiculo': "$tipoVeiculo",
+    'localSinistro': "$localSinistro",
+    'dataSinistro': "$dataSinistro",
+    })
+        .then((value) => print("Sinistro Added"))
+        .catchError((error) => print("Sinistro to add seguradora: $error"));
+  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -20,34 +45,51 @@ class CadastroSinistro extends StatelessWidget {
   children: <Widget>[
          TextField(
       decoration: InputDecoration(
-        label: Text("Tipo de sinistro"),
+        label: Text("Tipo de sinistro")),
+        onChanged: (value) {
+      setState(() {
+      _tipoSinistro = value;
+      });
+      },
         //border: OutlineInputBorder()
-      ),
     ),
     TextField(
       decoration: InputDecoration(
-        label: Text("Tipo de veículo"),
+        label: Text("Tipo de veículo")),
+      onChanged: (value) {
+        setState(() {
+          _tipoVeiculo = value;
+        });
+      },
         //border: OutlineInputBorder()
-      ),
     ),
     TextField(
       decoration: InputDecoration(
-        label: Text("Local do sinistro"),
+        label: Text("Local do sinistro")),
         //border: OutlineInputBorder()
-      ),
+      onChanged: (value) {
+        setState(() {
+          _localSinistro = value;
+        });
+      },
     ),
         TextField(
       decoration: InputDecoration(
 
-        label: Text("Data do sinistro"),
+        label: Text("Data do sinistro")),
         //border: OutlineInputBorder()
-      ),
+          onChanged: (value) {
+            setState(() {
+              _dataSinistro = value;
+            });
+          },
     ),
             Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextButton(
             onPressed: () {
-
+              addSinistro(
+                  _tipoSinistro, _tipoVeiculo, _localSinistro, _dataSinistro);
             },
             child: const Text("Cadastrar"),
           ),

@@ -92,6 +92,7 @@ class _CadastroClienteScreen extends State<CadastroClienteScreen> {
                   },
                 ),
                 TextField(
+                  obscureText: true,
                   decoration: InputDecoration(
                       label: Text("Senha"), border: OutlineInputBorder()),
                   onChanged: (value) {
@@ -109,7 +110,7 @@ class _CadastroClienteScreen extends State<CadastroClienteScreen> {
                           _nome, _endereco, _cpf, _telefone, _acesso, _senha);
                     },
                     child: Text(
-                      "Criar usuário",
+                      "Cadastrar",
                     ),
                     //child: const Text("Cadastrar"),
                   ),
