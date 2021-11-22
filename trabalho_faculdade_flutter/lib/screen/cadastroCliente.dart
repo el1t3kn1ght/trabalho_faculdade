@@ -23,15 +23,24 @@ class _CadastroClienteScreen extends State<CadastroClienteScreen> {
     CollectionReference users = FirebaseFirestore.instance.collection('user');
     return users
         .add({
-          'nome': "$nome",
-          'endereco': "$endereco",
-          'cpf': "$cpf",
-          'telefone': "$telefone",
-          'acesso': "$acesso",
-          'senha': "$senha"
-        })
-        .then((value) => print("User Added"))
-        .catchError((error) => print("Failed to add user: $error"));
+      'nome': "$nome",
+      'endereco': "$endereco",
+      'cpf': "$cpf",
+      'telefone': "$telefone",
+      'acesso': "$acesso",
+      'senha': "$senha"
+    })
+        .then((value) =>
+    {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(
+          SnackBar(content: Text("Usuário Cadastrado com sucesso!")))
+    })
+        .catchError((error) =>
+    {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Erro ao cadastar")))
+    });
   }
 
   Widget build(BuildContext context) {

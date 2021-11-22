@@ -23,8 +23,14 @@ class _CadastroFilialScreen extends State<CadastroFilialScreen> {
       'cnpj': "$cnpj",
       'telefone': "$telefone",
     })
-        .then((value) => print("Filial Added"))
-        .catchError((error) => print("Failed to add filial: $error"));
+        .then((value) => {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Filial Cadastrada com sucesso!")))
+    })
+        .catchError((error) => {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Erro ao cadastar")))
+    });
   }
 
   Widget build(BuildContext context) {

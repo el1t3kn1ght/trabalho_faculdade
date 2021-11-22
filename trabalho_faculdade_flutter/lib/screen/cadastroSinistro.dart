@@ -24,8 +24,14 @@ class _CadastroSinistroScreen extends State<CadastroSinistroScreen> {
     'localSinistro': "$localSinistro",
     'dataSinistro': "$dataSinistro",
     })
-        .then((value) => print("Sinistro Added"))
-        .catchError((error) => print("Sinistro to add seguradora: $error"));
+        .then((value) => {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Sinistro Cadastrado com sucesso!")))
+    })
+        .catchError((error) => {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Erro ao cadastar")))
+    });
   }
   // This widget is the root of your application.
   @override

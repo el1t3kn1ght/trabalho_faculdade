@@ -27,8 +27,14 @@ class _CadastroSeguradoraScreen extends State<CadastroSeguradoraScreen> {
       'mensalidade': "$mensalidade",
       'beneficios': "$beneficios"
     })
-        .then((value) => print("Seguradora Added"))
-        .catchError((error) => print("Failed to add seguradora: $error"));
+        .then((value) => {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Seguradora Cadastrada com sucesso!")))
+    })
+        .catchError((error) => {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Erro ao cadastar")))
+    });
   }
   // This widget is the root of your application.
   @override
