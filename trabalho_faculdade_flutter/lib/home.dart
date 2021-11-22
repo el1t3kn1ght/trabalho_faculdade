@@ -5,6 +5,7 @@ import 'package:trabalho_faculdade_flutter/screen/cadastroFilial.dart';
 import 'package:trabalho_faculdade_flutter/screen/cadastroSeguradora.dart';
 import 'package:trabalho_faculdade_flutter/screen/cadastroSinistro.dart';
 import 'package:trabalho_faculdade_flutter/screen/faq.dart';
+import 'package:trabalho_faculdade_flutter/screen/login.dart';
 
 class SecondRoute extends StatelessWidget {
   const SecondRoute({Key? key}) : super(key: key);
@@ -38,7 +39,11 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       drawer: Drawer(
-        child: ListView(
+
+        child:
+
+        ListView(
+
           padding: EdgeInsets.zero,
           children: <Widget>[
             UserAccountsDrawerHeader(
@@ -54,8 +59,7 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => HomeScreen()),
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
                 );
               },
             ),
@@ -110,6 +114,16 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Faq()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text("Sair"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
                 );
               },
             )

@@ -107,7 +107,9 @@ class _CadastroClienteScreen extends State<CadastroClienteScreen> {
                 TextField(
                   obscureText: true,
                   decoration: InputDecoration(
-                      label: Text("Senha"), border: OutlineInputBorder()),
+                      label: Text("Senha"),
+                      border: OutlineInputBorder()
+                  ),
                   onChanged: (value) {
                     setState(() {
                       _senha = value;
@@ -153,12 +155,6 @@ class Cliente {
   String toString() {
     return 'Cliente{nome: $nome, endereco: $endereco, cpf: $cpf, telefone: $telefone}';
   }
-// Map<String, dynamic> toJson()
-// {
-//   return {
-//     "name": this.nome
-//   };
-// }
 }
 
 class MyApp extends StatelessWidget {
