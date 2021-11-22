@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:trabalho_faculdade_flutter/screen/cadastroCliente.dart';
+import 'package:trabalho_faculdade_flutter/screen/cadastroFilial.dart';
+import 'package:trabalho_faculdade_flutter/screen/cadastroSeguradora.dart';
+import 'package:trabalho_faculdade_flutter/screen/cadastroSinistro.dart';
 import 'package:trabalho_faculdade_flutter/screen/faq.dart';
 
 class SecondRoute extends StatelessWidget {
@@ -74,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => CadastroClienteScreen()),
+                      builder: (context) => CadastroFilialScreen()),
                 );
               },
             ),
@@ -85,7 +88,7 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => CadastroClienteScreen()),
+                      builder: (context) => CadastroSeguradoraScreen()),
                 );
               },
             ),
@@ -96,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => CadastroClienteScreen()),
+                      builder: (context) => CadastroSinistroScreen()),
                 );
               },
             ),
