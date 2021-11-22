@@ -16,7 +16,7 @@ class SecondRoute extends StatelessWidget {
 onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CadastroCliente()),
+                MaterialPageRoute(builder: (context) => CadastroClienteScreen()),
               );
             },
           child: Text('Go back!'),
@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CadastroCliente()),
+                MaterialPageRoute(builder: (context) => CadastroClienteScreen()),
               );
             },
             ),
