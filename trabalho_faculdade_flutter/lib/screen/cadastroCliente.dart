@@ -35,8 +35,7 @@ class _CadastroClienteScreen extends State<CadastroClienteScreen> {
   }
 
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text('Cadastro de cliente'),
       ),
@@ -55,6 +54,7 @@ class _CadastroClienteScreen extends State<CadastroClienteScreen> {
                     });
                   },
                 ),
+                SizedBox(height: 10),
                 TextField(
                   decoration: InputDecoration(
                       label: Text("Endereço"), border: OutlineInputBorder()),
@@ -64,6 +64,7 @@ class _CadastroClienteScreen extends State<CadastroClienteScreen> {
                     });
                   },
                 ),
+                SizedBox(height: 10),
                 TextField(
                   decoration: InputDecoration(
                       label: Text("CPF"), border: OutlineInputBorder()),
@@ -73,6 +74,7 @@ class _CadastroClienteScreen extends State<CadastroClienteScreen> {
                     });
                   },
                 ),
+                SizedBox(height: 10),
                 TextField(
                   decoration: InputDecoration(
                       label: Text("Telefone"), border: OutlineInputBorder()),
@@ -82,6 +84,7 @@ class _CadastroClienteScreen extends State<CadastroClienteScreen> {
                     });
                   },
                 ),
+                SizedBox(height: 10),
                 TextField(
                   decoration: InputDecoration(
                       label: Text("Acesso"), border: OutlineInputBorder()),
@@ -91,6 +94,7 @@ class _CadastroClienteScreen extends State<CadastroClienteScreen> {
                     });
                   },
                 ),
+                SizedBox(height: 10),
                 TextField(
                   obscureText: true,
                   decoration: InputDecoration(
@@ -101,6 +105,7 @@ class _CadastroClienteScreen extends State<CadastroClienteScreen> {
                     });
                   },
                 ),
+                SizedBox(height: 10),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
@@ -118,7 +123,7 @@ class _CadastroClienteScreen extends State<CadastroClienteScreen> {
               ],
             )),
       ),
-    ));
+    );
   }
 }
 
